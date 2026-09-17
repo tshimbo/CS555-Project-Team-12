@@ -1,4 +1,6 @@
-# Meals4Kidz — CS555 Agile Methods (Team 12)
+# Meals4Kidz: CS555 Agile Methods (Team 12)
+
+[![Tests](https://github.com/tshimbo/CS555-Project-Team-12/actions/workflows/tests.yml/badge.svg)](https://github.com/tshimbo/CS555-Project-Team-12/actions/workflows/tests.yml)
 
 A command-line meal-planning app for kids, built by a student team at Stevens Institute of Technology over four Scrum sprints.
 
