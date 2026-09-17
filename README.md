@@ -5,20 +5,14 @@ A command-line meal-planning app for kids, built by a student team at Stevens In
 ## What it does
 - Browse recipes and view ingredient measurements
 - Record ingredient likes and dislikes
-- Track a child's weight history by age (saved to `weightsFile.json`)
+- Track a child's weight and height history by age (saved as JSON next to the script)
 - Validates input (e.g., recipe and ingredient names can't be numbers; every recipe needs at least one ingredient)
 
 ## Process
 Work was planned as user stories and split into sprint tasks, with unit tests (`unittest`) written alongside each story.
 
-## Run it
+## Run the test suite
+Requires Python 3.8+ and no extra packages. Works from any directory:
 ```bash
-cd meals4kidz
-python3 meals4kidz.py
-```
-
-## Tests
-```bash
-cd meals4kidz
-python3 -m unittest meals4kidz.py
+python3 meals4kidz/meals4kidz.py
 ```

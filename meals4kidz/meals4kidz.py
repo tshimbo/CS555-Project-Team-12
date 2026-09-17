@@ -499,14 +499,22 @@ def childAge(birthdate):
 
 
 import json
+import os
 
-with open('weightsFile.json') as f:
-    if f.read() != "":
-        f.seek(0)
-        print(f.read())
-        weights = json.load(f)
-    else:
-        weights = {}
+# Data files live next to this script so the app works from any directory.
+DATA_DIR = os.path.dirname(os.path.abspath(__file__))
+WEIGHTS_FILE = os.path.join(DATA_DIR, 'weightsFile.json')
+HEIGHTS_FILE = os.path.join(DATA_DIR, 'heightsFile.json')
+
+
+def loadHistory(path):
+    """Return saved history, or an empty dict if the file is missing or empty."""
+    if not os.path.exists(path) or os.path.getsize(path) == 0:
+        return {}
+    with open(path) as f:
+        return json.load(f)
+
+weights = loadHistory(WEIGHTS_FILE)
 
 def addWeight(age, weight):
     weights[age] = weight
@@ -514,7 +522,7 @@ def addWeight(age, weight):
 
 def clearWeight():
     weights.clear()
-    open('weightsFile.json', 'w').close()
+    open(WEIGHTS_FILE, 'w').close()
 
 def displayWeightHistory():
     print("{:<10} {:<10}".format('Age', 'Weight'))
@@ -522,7 +530,7 @@ def displayWeightHistory():
         weight = value
         print("{:<10} {:<10}".format(key, weight))
 
-with open('weightsFile.json', 'w') as f:
+with open(WEIGHTS_FILE, 'w') as f:
     json.dump(weights, f)
 
 #_____________________________________________________________
@@ -535,13 +543,7 @@ with open('weightsFile.json', 'w') as f:
 
 #_____________________________________________________________
 
-with open('heightsFile.json') as f:
-    if f.read() != "":
-        f.seek(0)
-        print(f.read())
-        heights = json.load(f)
-    else:
-        heights = {}
+heights = loadHistory(HEIGHTS_FILE)
 
 def addHeight(age, height):
     heights[age] = height
@@ -549,7 +551,7 @@ def addHeight(age, height):
 
 def clearHeight():
     heights.clear()
-    open('heightsFile.json', 'w').close()
+    open(HEIGHTS_FILE, 'w').close()
 
 def displayHeightHistory():
     print("{:<10} {:<10}".format('Age', 'Height'))
@@ -557,7 +559,7 @@ def displayHeightHistory():
         height = value
         print("{:<10} {:<10}".format(key, height))
 
-with open('heightsFile.json', 'w') as f:
+with open(HEIGHTS_FILE, 'w') as f:
     json.dump(heights, f)
 
 #--------------------------------------
